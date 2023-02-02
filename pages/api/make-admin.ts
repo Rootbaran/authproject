@@ -23,9 +23,13 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     res.status(400).json({ message: 'Bad request' })
     return
   }
-  const { id } = JSON.parse(body)
+  const { id, pass } = JSON.parse(body)
   if (!id) {
     res.status(400).json({ message: 'Bad request' })
+    return
+  }
+  if (pass !== process.env.ADMIN_PASS) {
+    res.status(401).json({ message: 'Unauthorized' })
     return
   }
   const updatedUser = await getUser(id)

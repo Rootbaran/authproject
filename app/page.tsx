@@ -1,18 +1,12 @@
 import React from "react";
-import Login from "../components/Login";
-import SignOut from "../components/SignOut";
 
 export default function Page() {
   return (
     <div>
-      <div>Login</div>
-      <div>
-        <Login />
+      <div className="content px-20">
+        <div className="text-sm text-gray-400/80">Feed</div>
+        <div></div>
       </div>
-      <div className="ml-5">
-        <SignOut />
-      </div>
-      a
     </div>
   );
 }

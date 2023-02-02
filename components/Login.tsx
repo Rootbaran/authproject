@@ -10,7 +10,6 @@ export default function Login() {
     const resp = await fetch("/api/auth/signin", {
       method: "POST",
       body: JSON.stringify({
-        username: event.target.username.value,
         email: event.target.email.value,
         password: event.target.password.value,
       }),
@@ -20,22 +19,14 @@ export default function Login() {
   };
   React.useEffect(() => {
     if (userData) {
-      localStorage.setItem("session", userData.session.token);
+      localStorage.setItem("session", JSON.stringify(userData.session.token));
       router.push("/");
+      location.reload();
     }
   }, [userData]);
   return (
     <div className="p-8">
-      <form onSubmit={handleSubmit} className="space-y-4 flex flex-col w-[15%]">
-        <div className="flex gap-x-2 flex-col">
-          <label htmlFor="username">Username</label>
-          <input
-            className="text-gray-800 px-1 py-px rounded-md"
-            type="text"
-            name="username"
-            id="username"
-          />
-        </div>
+      <form onSubmit={handleSubmit} className="space-y-4 flex flex-col">
         <div className="flex gap-x-2 flex-col">
           <label htmlFor="email">Email</label>
           <input

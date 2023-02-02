@@ -20,12 +20,12 @@ export default function SignUp() {
     setUserData(data);
   };
   useEffect(() => {
-    console.log(userData);
     if (userData?.session?.token) {
       localStorage.setItem("session", JSON.stringify(userData?.session?.token));
     }
     if (userData) {
       router.push("/");
+      location.reload();
     }
   }, [userData]);
 
